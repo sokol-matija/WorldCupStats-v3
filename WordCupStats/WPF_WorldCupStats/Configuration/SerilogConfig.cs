@@ -12,11 +12,9 @@ namespace WPF_WorldCupStats.Configuration
 		{
 			//await ClearSeqLogsAsync();
 
-			var logFilePath = FilePathHelper.LogFilePath;
-
 			Log.Logger = new LoggerConfiguration()
 				.MinimumLevel.Debug()
-				.WriteTo.File(logFilePath, rollingInterval: RollingInterval.Day)
+				.WriteTo.File(FilePathHelper.LogFilePath, rollingInterval: RollingInterval.Day)
 				.WriteTo.Seq("http://localhost:5341")
 				.CreateLogger();
 		}

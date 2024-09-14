@@ -1,21 +1,21 @@
 {
   "WindowSize": 0,
-  "DataSource": "json",
-  "Championship": "men",
+  "DataSource": "db",
+  "Championship": "women",
   "Language": "hr",
-  "FavoriteTeamMen": "CRO",
-  "FavoriteTeamWomen": "USA",
+  "FavoriteTeamMen": "FRA",
+  "FavoriteTeamWomen": "SRB",
   "FavoritePlayers": {
     "men": {
       "CRO": [
-        "Danijel SUBASIC ",
-        "Luka Modric"
+        "MyPlayer SUBASIC",
+        "MyPlayer MODRIC"
       ]
     },
     "women": {
       "USA": [
-        "Alex MORGAN",
-        "Megan RAPINOE"
+        "MyPlayer MORGAN",
+        "MyPlayer RAPINOE"
       ]
     }
   }

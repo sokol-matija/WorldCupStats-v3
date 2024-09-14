@@ -1,4 +1,5 @@
-﻿using DataLayer.Models;
+﻿using DataLayer.Helpers;
+using DataLayer.Models;
 using Newtonsoft.Json;
 using Serilog;
 using System.Linq.Expressions;
@@ -10,47 +11,14 @@ namespace DataLayer.Managers
 	{
 		private const string SettingsFileName = "settings.json";
 		private static readonly Lazy<SettingsManager> _instance = new Lazy<SettingsManager>(() => new SettingsManager());
-		private readonly string _settingsFilePath;
+		private readonly string _settingsFilePath = FilePathHelper.SettingsFilePath;
 		private Settings _settings;
 
 		public static SettingsManager Instance => _instance.Value;
 
 		private SettingsManager()
 		{
-			_settingsFilePath = GetSettingsFilePath();
-			EnsureDirectoryExists(Path.GetDirectoryName(_settingsFilePath));
 			LoadSettings();
-		}
-
-		private static string GetSettingsFilePath()
-		{
-			string assemblyLocation = Assembly.GetExecutingAssembly().Location;
-			string currentDirectory = Path.GetDirectoryName(assemblyLocation);
-			string solutionDirectory = FindSolutionDirectory(currentDirectory);
-
-			if (solutionDirectory == null)
-			{
-				throw new DirectoryNotFoundException("Solution directory not found.");
-			}
-
-			string dataLayerDirectory = Path.Combine(solutionDirectory, "DataLayer");
-
-			if (!Directory.Exists(dataLayerDirectory))
-			{
-				throw new DirectoryNotFoundException("DataLayer project directory not found.");
-			}
-
-			string assetsFilePath = Path.Combine(dataLayerDirectory, "Assets");
-			string settingsFilePath = Path.Combine(assetsFilePath, SettingsFileName);
-
-			Log.Information("========== GetSettingsFilePath ==========");
-			Log.Information("Solution directory: {SolutionDirectory}", solutionDirectory);
-			Log.Information("DataLayer directory: {DataLayerDirectory}", dataLayerDirectory);
-			Log.Information("Assets path: {AssetsFilePath}", assetsFilePath);
-			Log.Information("Settings file path: {SettingsFilePath}", settingsFilePath);
-			Log.Information("========== GetSettingsFilePath End ==========");
-
-			return settingsFilePath;
 		}
 
 		private static string FindSolutionDirectory(string startDirectory)
@@ -97,11 +65,6 @@ namespace DataLayer.Managers
 			{
 				Log.Error(ex, "Error saving settings");
 			}
-		}
-
-		private static void EnsureDirectoryExists(string path)
-		{
-			Directory.CreateDirectory(path);
 		}
 
 		public T GetSetting<T>(Expression<Func<Settings, T>> propertySelector)
