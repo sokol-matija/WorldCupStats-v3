@@ -12,7 +12,8 @@ namespace WPF_WorldCupStats
 			InitializeComponent();
 			DataContext = new MainViewModel();
 			InitializeAsync();
-			DataTester.RunAllTests();
+			//DataTester.RunAllTests();
+			//MVVMTester.RunAllTests();
 		}
 
 		private async void InitializeAsync()
