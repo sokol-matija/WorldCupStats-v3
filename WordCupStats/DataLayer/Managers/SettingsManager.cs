@@ -1,56 +1,47 @@
 ﻿using DataLayer.Helpers;
 using DataLayer.Models;
-using Newtonsoft.Json;
-using Serilog;
+using System;
+using System.IO;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Text.Json;
+using Serilog;
 
 namespace DataLayer.Managers
 {
 	public class SettingsManager
 	{
-		private const string SettingsFileName = "settings.json";
 		private static readonly Lazy<SettingsManager> _instance = new Lazy<SettingsManager>(() => new SettingsManager());
-		private readonly string _settingsFilePath = FilePathHelper.SettingsFilePath;
+		private readonly string _settingsFilePath;
 		private Settings _settings;
 
 		public static SettingsManager Instance => _instance.Value;
 
 		private SettingsManager()
 		{
+			_settingsFilePath = FilePathHelper.SettingsFilePath;
 			LoadSettings();
-		}
-
-		private static string FindSolutionDirectory(string startDirectory)
-		{
-			while (startDirectory != null)
-			{
-				if (Directory.GetFiles(startDirectory, "*.sln").Length > 0)
-				{
-					return startDirectory;
-				}
-				startDirectory = Directory.GetParent(startDirectory)?.FullName;
-			}
-			return null;
 		}
 
 		private void LoadSettings()
 		{
 			try
 			{
-				_settings = File.Exists(_settingsFilePath)
-					? JsonConvert.DeserializeObject<Settings>(File.ReadAllText(_settingsFilePath))
-					: new Settings();
-
-				if (!File.Exists(_settingsFilePath))
+				if (File.Exists(_settingsFilePath))
 				{
-					Log.Information("Settings file not found. Created default settings.");
+					string json = File.ReadAllText(_settingsFilePath);
+					_settings = JsonSerializer.Deserialize<Settings>(json) ?? new Settings();
+				}
+				else
+				{
+					_settings = new Settings();
 					SaveSettings();
+					Log.Information("Settings file not found. Created default settings.");
 				}
 			}
 			catch (Exception ex)
 			{
-				Log.Error(ex, "Error loading settings");
+				Log.Error(ex, "Error loading settings. Using default settings.");
 				_settings = new Settings();
 			}
 		}
@@ -59,40 +50,58 @@ namespace DataLayer.Managers
 		{
 			try
 			{
-				File.WriteAllText(_settingsFilePath, JsonConvert.SerializeObject(_settings, Formatting.Indented));
+				string json = JsonSerializer.Serialize(_settings, new JsonSerializerOptions { WriteIndented = true });
+				File.WriteAllText(_settingsFilePath, json);
 			}
 			catch (Exception ex)
 			{
 				Log.Error(ex, "Error saving settings");
+				throw; // Rethrow the exception after logging
 			}
 		}
 
 		public T GetSetting<T>(Expression<Func<Settings, T>> propertySelector)
 		{
-			return propertySelector.Compile()(_settings);
+			try
+			{
+				return propertySelector.Compile()(_settings);
+			}
+			catch (Exception ex)
+			{
+				Log.Error(ex, "Error getting setting");
+				throw;
+			}
 		}
 
 		public void SetSetting<T>(Expression<Func<Settings, T>> propertySelector, T value)
 		{
-			var propertyInfo = ((MemberExpression)propertySelector.Body).Member as System.Reflection.PropertyInfo;
-			if (propertyInfo == null)
+			try
 			{
-				throw new ArgumentException("The lambda expression 'propertySelector' should point to a valid Property");
-			}
+				var propertyInfo = ((MemberExpression)propertySelector.Body).Member as PropertyInfo;
+				if (propertyInfo == null)
+				{
+					throw new ArgumentException("The lambda expression 'propertySelector' should point to a valid Property");
+				}
 
-			propertyInfo.SetValue(_settings, value);
-			SaveSettings();
+				propertyInfo.SetValue(_settings, value);
+				SaveSettings();
+			}
+			catch (Exception ex)
+			{
+				Log.Error(ex, "Error setting setting");
+				throw;
+			}
 		}
 
 		public List<string> GetFavoritePlayersForTeam(string gender, string team)
 		{
-			var genderDict = gender.ToLower() == "men" ? _settings.favoritePlayers.Men : _settings.favoritePlayers.Women;
+			var genderDict = gender.ToLower() == "men" ? _settings.FavoritePlayers.Men : _settings.FavoritePlayers.Women;
 			return genderDict.TryGetValue(team, out var players) ? players : new List<string>();
 		}
 
 		public void AddFavoritePlayer(string gender, string team, string playerName)
 		{
-			var genderDict = gender.ToLower() == "men" ? _settings.favoritePlayers.Men : _settings.favoritePlayers.Women;
+			var genderDict = gender.ToLower() == "men" ? _settings.FavoritePlayers.Men : _settings.FavoritePlayers.Women;
 
 			if (!genderDict.TryGetValue(team, out var players))
 			{
@@ -109,7 +118,7 @@ namespace DataLayer.Managers
 
 		public void RemoveFavoritePlayer(string gender, string team, string playerName)
 		{
-			var genderDict = gender.ToLower() == "men" ? _settings.favoritePlayers.Men : _settings.favoritePlayers.Women;
+			var genderDict = gender.ToLower() == "men" ? _settings.FavoritePlayers.Men : _settings.FavoritePlayers.Women;
 
 			if (genderDict.TryGetValue(team, out var players) && players.Remove(playerName))
 			{

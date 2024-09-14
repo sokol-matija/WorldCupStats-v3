@@ -26,7 +26,7 @@ namespace WPF_WorldCupStats.Testing
 			string language = settingsManager.GetSetting(s => s.Language);
 			string favoriteTeamMen = settingsManager.GetSetting(s => s.FavoriteTeamMen);
 			string favoriteTeamWomen = settingsManager.GetSetting(s => s.FavoriteTeamWomen);
-			FavoritePlayers favoritePlayers = settingsManager.GetSetting(s => s.favoritePlayers);
+			FavoritePlayers favoritePlayers = settingsManager.GetSetting(s => s.FavoritePlayers);
 
 			Log.Information("Window Size: {WindowSize}", windowSize);
 			Log.Information("Data Source: {DataSource}", dataSource);
@@ -52,7 +52,7 @@ namespace WPF_WorldCupStats.Testing
 			settingsManager.SetSetting(s => s.Language, "hr");
 			settingsManager.SetSetting(s => s.FavoriteTeamMen, "FRA");
 			settingsManager.SetSetting(s => s.FavoriteTeamWomen, "SRB");
-			settingsManager.SetSetting(s => s.favoritePlayers,
+			settingsManager.SetSetting(s => s.FavoritePlayers,
 				new FavoritePlayers
 				{
 					Men = new Dictionary<string, List<string>>
@@ -81,7 +81,7 @@ namespace WPF_WorldCupStats.Testing
 			Log.Information("Favorite team women: {FavoriteTeamWomen}", settings.FavoriteTeamWomen);
 			Log.Information("Favorite players:");
 
-			LogFavoritePlayers(settings.favoritePlayers);
+			LogFavoritePlayers(settings.FavoritePlayers);
 
 			Log.Information("========== Test New Default Settings End ==========");
 		}

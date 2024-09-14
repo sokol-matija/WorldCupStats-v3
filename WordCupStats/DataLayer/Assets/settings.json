@@ -1,18 +1,18 @@
 {
-  "WindowSize": 0,
-  "DataSource": "db",
-  "Championship": "women",
-  "Language": "hr",
-  "FavoriteTeamMen": "FRA",
-  "FavoriteTeamWomen": "SRB",
-  "FavoritePlayers": {
-    "men": {
+  "windowSize": 0,
+  "dataSource": "db",
+  "championship": "women",
+  "language": "hr",
+  "favoriteTeamMen": "FRA",
+  "favoriteTeamWomen": "SRB",
+  "favoritePlayers": {
+    "Men": {
       "CRO": [
         "MyPlayer SUBASIC",
         "MyPlayer MODRIC"
       ]
     },
-    "women": {
+    "Women": {
       "USA": [
         "MyPlayer MORGAN",
         "MyPlayer RAPINOE"

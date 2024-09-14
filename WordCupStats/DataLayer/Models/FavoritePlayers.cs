@@ -4,13 +4,13 @@ namespace DataLayer.Models
 	public class FavoritePlayers
 	{
 		[JsonProperty("men")]
-		public Dictionary<String, List<String>> Men { get; set; } = new Dictionary<string, List<String>>
+		public Dictionary<string, List<string>> Men { get; set; } = new Dictionary<string, List<string>>
 		{
-			{"CRO", new List<String>{ "Danijel SUBASIC " } }
+			{"CRO", new List<string>{ "Danijel SUBASIC " } }
 		};
 
 		[JsonProperty("women")]
-		public Dictionary<String, List<String>> Women { get; set; } = new Dictionary<string, List<String>>
+		public Dictionary<string, List<string>> Women { get; set; } = new Dictionary<string, List<string>>
 		{
 			{ "USA", new List<string> { "Alex MORGAN", "Megan RAPINOE" } }
 		};

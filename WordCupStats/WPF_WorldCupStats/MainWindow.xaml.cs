@@ -13,7 +13,7 @@ namespace WPF_WorldCupStats
 		{
 			InitializeComponent();
 			InitializeAsync();
-			RunTests();
+			DataTester.RunAllTests();
 		}
 
 		private async void InitializeAsync()
@@ -21,11 +21,5 @@ namespace WPF_WorldCupStats
 			await SerilogConfig.ConfigureAsync();
 		}
 
-		private void RunTests()
-		{
-			Log.Information("Starting data tests...");
-			DataTester.RunAllTests();
-			Log.Information("Data tests completed.");
-		}
 	}
 }
