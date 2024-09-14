@@ -1,17 +1,16 @@
 ﻿using System.Windows;
-using DataLayer.Managers;
-using Serilog;
 using WPF_WorldCupStats.Configuration;
 using WPF_WorldCupStats.Testing;
+using WPF_WorldCupStats.ViewModels;
 
 namespace WPF_WorldCupStats
 {
 	public partial class MainWindow : Window
 	{
-		public readonly SettingsManager _settingsManager = SettingsManager.Instance;
 		public MainWindow()
 		{
 			InitializeComponent();
+			DataContext = new MainViewModel();
 			InitializeAsync();
 			DataTester.RunAllTests();
 		}
@@ -20,6 +19,5 @@ namespace WPF_WorldCupStats
 		{
 			await SerilogConfig.ConfigureAsync();
 		}
-
 	}
 }
