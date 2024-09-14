@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34902.65
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{19F18516-B5CC-4586-97F4-0F0A2B565D26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_WorldCupStats", "WPF_WorldCupStats\WPF_WorldCupStats.csproj", "{A72C5E91-27F9-47FE-A9A7-2F10407F06F8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{19F18516-B5CC-4586-97F4-0F0A2B565D26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19F18516-B5CC-4586-97F4-0F0A2B565D26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19F18516-B5CC-4586-97F4-0F0A2B565D26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19F18516-B5CC-4586-97F4-0F0A2B565D26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A72C5E91-27F9-47FE-A9A7-2F10407F06F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A72C5E91-27F9-47FE-A9A7-2F10407F06F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A72C5E91-27F9-47FE-A9A7-2F10407F06F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A72C5E91-27F9-47FE-A9A7-2F10407F06F8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7CCE5866-C12F-4892-B67A-81E634E0A37E}
+	EndGlobalSection
+EndGlobal
