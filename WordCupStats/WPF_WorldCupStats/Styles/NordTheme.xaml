@@ -1,0 +1,68 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<!-- Nord Color Palette -->
+	<SolidColorBrush x:Key="Nord0" Color="#FF2E3440"/>
+	<SolidColorBrush x:Key="Nord1" Color="#FF3B4252"/>
+	<SolidColorBrush x:Key="Nord2" Color="#FF4C566A"/>
+	<SolidColorBrush x:Key="Nord3" Color="#FF4C566A"/>
+	<SolidColorBrush x:Key="Nord4" Color="#FFD8DEE9"/>
+	<SolidColorBrush x:Key="Nord5" Color="#FFE5E9F0"/>
+	<SolidColorBrush x:Key="Nord6" Color="#FFECEFF4"/>
+	<SolidColorBrush x:Key="Nord7" Color="#FF8FBCBB"/>
+	<SolidColorBrush x:Key="Nord8" Color="#FF88C0D0"/>
+	<SolidColorBrush x:Key="Nord9" Color="#FF81A1C1"/>
+	<SolidColorBrush x:Key="Nord10" Color="#FF5E81AC"/>
+	<SolidColorBrush x:Key="Nord11" Color="#FFBF616A"/>
+	<SolidColorBrush x:Key="Nord12" Color="#FFD08770"/>
+	<SolidColorBrush x:Key="Nord13" Color="#FFEBCB8B"/>
+	<SolidColorBrush x:Key="Nord14" Color="#FFA3BE8C"/>
+	<SolidColorBrush x:Key="Nord15" Color="#FFB48EAD"/>
+
+	<!-- Fonts -->
+	<FontFamily x:Key="RubikFont">pack://application:,,,/Fonts/#Rubik</FontFamily>
+
+	<!-- Base Styles -->
+	<Style x:Key="NordBaseStyle">
+		<Setter Property="Control.FontFamily" Value="{StaticResource RubikFont}"/>
+		<Setter Property="Control.Foreground" Value="{StaticResource Nord6}"/>
+	</Style>
+
+	<!-- Control Styles -->
+	<Style TargetType="{x:Type Control}" BasedOn="{StaticResource NordBaseStyle}"/>
+
+	<Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource NordBaseStyle}"/>
+
+	<Style x:Key="SettingsTitleStyle" TargetType="TextBlock" BasedOn="{StaticResource NordBaseStyle}">
+		<Setter Property="FontSize" Value="29"/>
+		<Setter Property="FontWeight" Value="Bold"/>
+		<Setter Property="Margin" Value="0,0,0,20"/>
+	</Style>
+
+	<Style TargetType="{x:Type Window}" BasedOn="{StaticResource NordBaseStyle}">
+		<Setter Property="Background" Value="{StaticResource Nord0}"/>
+	</Style>
+
+	<Style TargetType="{x:Type Button}" BasedOn="{StaticResource NordBaseStyle}">
+		<Setter Property="Background" Value="{StaticResource Nord2}"/>
+		<Setter Property="BorderBrush" Value="{StaticResource Nord3}"/>
+		<Setter Property="Padding" Value="10,5"/>
+		<Style.Triggers>
+			<Trigger Property="IsMouseOver" Value="True">
+				<Setter Property="Background" Value="{StaticResource Nord3}"/>
+			</Trigger>
+		</Style.Triggers>
+	</Style>
+
+	<Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource NordBaseStyle}">
+		<Setter Property="Background" Value="{StaticResource Nord1}"/>
+		<Setter Property="BorderBrush" Value="{StaticResource Nord3}"/>
+	</Style>
+
+	<Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource NordBaseStyle}">
+		<Setter Property="Background" Value="{StaticResource Nord1}"/>
+		<Setter Property="BorderBrush" Value="{StaticResource Nord3}"/>
+		<Setter Property="Padding" Value="5,2"/>
+	</Style>
+
+	<Style TargetType="{x:Type Label}" BasedOn="{StaticResource NordBaseStyle}"/>
+</ResourceDictionary>

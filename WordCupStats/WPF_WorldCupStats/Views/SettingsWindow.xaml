@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_WorldCupStats.Views"
         mc:Ignorable="d"
-        Title="Settings" Height="450" Width="400">
-	<Grid Margin="10">
+        Title="Settings" Height="450" Width="400"
+        WindowStartupLocation="CenterOwner">
+	<Window.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/Styles/NordTheme.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</Window.Resources>
+
+	<Grid Margin="20">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
@@ -23,34 +32,67 @@
 			<ColumnDefinition Width="*"/>
 		</Grid.ColumnDefinitions>
 
-		<TextBlock Text="Window Size:" Grid.Row="0" Grid.Column="0" Margin="0,0,10,5"/>
-		<ComboBox Grid.Row="0" Grid.Column="1" Margin="0,0,0,5"
-                  ItemsSource="{Binding WindowSizes}"
-                  SelectedItem="{Binding SelectedWindowSize}"/>
+		<!-- Title -->
+		<TextBlock Grid.Row="0" Grid.ColumnSpan="2" 
+                   Text="Settings" 
+                   Style="{StaticResource SettingsTitleStyle}"/>
 
-		<TextBlock Text="Data Source:" Grid.Row="1" Grid.Column="0" Margin="0,0,10,5"/>
-		<TextBox Grid.Row="1" Grid.Column="1" Margin="0,0,0,5"
-                 Text="{Binding DataSource}"/>
+		<!-- Window Size -->
+		<TextBlock Grid.Row="1" Grid.Column="0" Text="Window Size:" 
+                   VerticalAlignment="Center" Margin="0,0,10,10"/>
+		<ComboBox Grid.Row="1" Grid.Column="1" 
+                  ItemsSource="{Binding WindowSizes}" 
+                  SelectedItem="{Binding WindowSize}" 
+                  Margin="0,0,0,10"/>
 
-		<TextBlock Text="Championship:" Grid.Row="2" Grid.Column="0" Margin="0,0,10,5"/>
-		<TextBox Grid.Row="2" Grid.Column="1" Margin="0,0,0,5"
-                 Text="{Binding Championship}"/>
+		<!-- Data Source -->
+		<TextBlock Grid.Row="2" Grid.Column="0" Text="Data Source:" 
+                   VerticalAlignment="Center" Margin="0,0,10,10"/>
+		<ComboBox Grid.Row="2" Grid.Column="1" 
+                  ItemsSource="{Binding DataSources}" 
+                  SelectedItem="{Binding DataSource}" 
+                  Margin="0,0,0,10"/>
 
-		<TextBlock Text="Language:" Grid.Row="3" Grid.Column="0" Margin="0,0,10,5"/>
-		<TextBox Grid.Row="3" Grid.Column="1" Margin="0,0,0,5"
-                 Text="{Binding Language}"/>
+		<!-- Championship -->
+		<TextBlock Grid.Row="3" Grid.Column="0" Text="Championship:" 
+                   VerticalAlignment="Center" Margin="0,0,10,10"/>
+		<ComboBox Grid.Row="3" Grid.Column="1" 
+                  ItemsSource="{Binding Championships}" 
+                  SelectedItem="{Binding Championship}" 
+                  Margin="0,0,0,10"/>
 
-		<TextBlock Text="Favorite Team (Men):" Grid.Row="4" Grid.Column="0" Margin="0,0,10,5"/>
-		<TextBox Grid.Row="4" Grid.Column="1" Margin="0,0,0,5"
-                 Text="{Binding FavoriteTeamMen}"/>
+		<!-- Language -->
+		<TextBlock Grid.Row="4" Grid.Column="0" Text="Language:" 
+                   VerticalAlignment="Center" Margin="0,0,10,10"/>
+		<ComboBox Grid.Row="4" Grid.Column="1" 
+                  ItemsSource="{Binding Languages}" 
+                  SelectedItem="{Binding Language}" 
+                  Margin="0,0,0,10"/>
 
-		<TextBlock Text="Favorite Team (Women):" Grid.Row="5" Grid.Column="0" Margin="0,0,10,5"/>
-		<TextBox Grid.Row="5" Grid.Column="1" Margin="0,0,0,5"
-                 Text="{Binding FavoriteTeamWomen}"/>
+		<!-- Favorite Team (Men) -->
+		<TextBlock Grid.Row="5" Grid.Column="0" Text="Favorite Team (Men):" 
+                   VerticalAlignment="Center" Margin="0,0,10,10"/>
+		<TextBox Grid.Row="5" Grid.Column="1" 
+                 Text="{Binding FavoriteTeamMen}" 
+                 Margin="0,0,0,10"/>
 
-		<StackPanel Grid.Row="8" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
-			<Button Content="Save" Command="{Binding SaveCommand}" Width="75" Margin="0,0,10,0"/>
-			<Button Content="Cancel" Command="{Binding CancelCommand}" Width="75"/>
+		<!-- Favorite Team (Women) -->
+		<TextBlock Grid.Row="6" Grid.Column="0" Text="Favorite Team (Women):" 
+                   VerticalAlignment="Center" Margin="0,0,10,10"/>
+		<TextBox Grid.Row="6" Grid.Column="1" 
+                 Text="{Binding FavoriteTeamWomen}" 
+                 Margin="0,0,0,10"/>
+
+		<!-- Buttons -->
+		<StackPanel Grid.Row="8" Grid.ColumnSpan="2" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Right">
+			<Button Content="Save" 
+                    Command="{Binding SaveCommand}" 
+                    Width="75" Margin="0,0,10,0"/>
+			<Button Content="Cancel" 
+                    Command="{Binding CancelCommand}" 
+                    Width="75"/>
 		</StackPanel>
 	</Grid>
 </Window>

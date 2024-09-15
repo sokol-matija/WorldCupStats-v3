@@ -1,7 +1,7 @@
 ﻿using System.Windows;
+using WPF_WorldCupStats.ViewModels;
 using WPF_WorldCupStats.Configuration;
 using WPF_WorldCupStats.Testing;
-using WPF_WorldCupStats.ViewModels;
 
 namespace WPF_WorldCupStats
 {
@@ -12,8 +12,7 @@ namespace WPF_WorldCupStats
 			InitializeComponent();
 			DataContext = new MainViewModel();
 			InitializeAsync();
-			//DataTester.RunAllTests();
-			//MVVMTester.RunAllTests();
+			DataTester.RunAllTests();
 		}
 
 		private async void InitializeAsync()
