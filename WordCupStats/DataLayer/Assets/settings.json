@@ -1,26 +1,21 @@
 {
-  "windowSize": 1,
+  "windowSize": 0,
   "dataSource": "db",
-  "championship": "men",
-  "language": "fr",
-  "favoriteTeamMen": "ESP",
-  "favoriteTeamWomen": "GER",
+  "championship": "women",
+  "language": "hr",
+  "favoriteTeamMen": "FRA",
+  "favoriteTeamWomen": "SRB",
   "favoritePlayers": {
     "Men": {
       "CRO": [
         "MyPlayer SUBASIC",
         "MyPlayer MODRIC"
-      ],
-      "ESP": []
+      ]
     },
     "Women": {
       "USA": [
         "MyPlayer MORGAN",
-        "MyPlayer RAPINOE",
-        "Megan RAPINOE"
-      ],
-      "GER": [
-        "Alexandra POPP"
+        "MyPlayer RAPINOE"
       ]
     }
   }

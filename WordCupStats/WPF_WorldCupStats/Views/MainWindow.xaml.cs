@@ -3,7 +3,7 @@ using WPF_WorldCupStats.ViewModels;
 using WPF_WorldCupStats.Configuration;
 using WPF_WorldCupStats.Testing;
 
-namespace WPF_WorldCupStats
+namespace WPF_WorldCupStats.Views
 {
 	public partial class MainWindow : Window
 	{
